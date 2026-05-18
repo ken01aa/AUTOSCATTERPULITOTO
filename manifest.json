@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Bonus Cek",
+  "version": "7.6.4",
+  "description": "Ekstensi otomatis untuk memeriksa transaksi dan mendeteksi scatter Punya glanters",
+  "permissions": ["tabs", "windows", "scripting", "activeTab", "storage", "declarativeNetRequestWithHostAccess"],
+  "host_permissions": [
+    "https://*/transaction-record.html*",
+    "http://*/transaction-record.html*",
+    "https://agent.png777.com/*",
+    "https://public.u2uyu876x.com/*",
+    "https://public-api.u2uyu876x.com/*",
+    "https://public.zmcyu9ypy.com/*",
+    "https://public-api.zmcyu9ypy.com/*",
+    "https://bonussmb.com/*",
+    "https://script.google.com/*"
+  ],
+  "background": {
+    "service_worker": "background.min.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "jembutChecker"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*/transaction-record.html*",
+        "http://*/transaction-record.html*"
+      ],
+      "js": ["content.min.js"]
+    },
+    {
+      "matches": [
+        "https://bonussmb.com/*"
+      ],
+      "js": ["bonussmb-content.min.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

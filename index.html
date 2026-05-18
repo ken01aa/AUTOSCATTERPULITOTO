@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CekBonus Dashboard PRO</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-card: #ffffff;
+    --cover-color: #0F172A;
+    --accent-success: #10b981;
+    --accent-danger: #ef4444;
+    --accent-info: #3b82f6;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border: #e2e8f0;
+}
+
+body{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.bg-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 260px;
+    background: var(--cover-color);
+    z-index: 0;
+    clip-path: ellipse(120% 100% at 50% 0%);
+}
+
+.wrap{
+    position: relative;
+    z-index: 10;
+    padding: 25px;
+}
+
+.app{
+    max-width: 1600px;
+    margin: auto;
+}
+
+.appHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 20px 28px;
+    border-radius: 20px;
+    background: white;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.brand{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.logo{
+    width: 55px;
+    height: 55px;
+    border-radius: 16px;
+    background: var(--cover-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+.logoDot{
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: white;
+}
+
+.titleRow h1{
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--cover-color);
+}
+
+.subtitle{
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 999px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.hint{
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.iconBtn{
+    background: var(--cover-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.iconBtn:hover{
+    transform: translateY(-2px);
+    background: #1e293b;
+}
+
+.appMain{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.panel{
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.panelHeader{
+    margin-bottom: 20px;
+}
+
+.panelTitle{
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--cover-color);
+}
+
+.panelDesc{
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.grid{
+    display: grid;
+    gap: 18px;
+}
+
+label{
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+input,
+textarea{
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: var(--text-primary);
+    outline: none;
+    font-size: 14px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: 0.3s;
+}
+
+input:focus,
+textarea:focus{
+    border-color: var(--cover-color);
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
+    background: white;
+}
+
+textarea{
+    min-height: 100px;
+    resize: vertical;
+}
+
+.fieldHint{
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.row{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.rowGrow{
+    flex: 1;
+}
+
+.btn{
+    border: none;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+}
+
+.btn-primary{
+    background: var(--cover-color);
+    color: white;
+}
+
+.btn-primary:hover{
+    transform: translateY(-2px);
+    background: #1e293b;
+}
+
+.secondary{
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+
+.secondary:hover{
+    background: var(--border);
+    transform: translateY(-2px);
+}
+
+.danger{
+    background: var(--accent-danger);
+    color: white;
+}
+
+.danger:hover{
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+.small{
+    padding: 10px 16px;
+}
+
+.statusline{
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+details{
+    margin-top: 20px;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid var(--border);
+}
+
+summary{
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--cover-color);
+    font-size: 13px;
+}
+
+.tableWrap{
+    overflow: auto;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+thead{
+    background: var(--bg-secondary);
+}
+
+th{
+    padding: 14px 16px;
+    text-align: left;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+}
+
+td{
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+tbody tr{
+    transition: 0.3s;
+}
+
+tbody tr:hover{
+    background: var(--bg-secondary);
+}
+
+.panelPhoto{
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+}
+
+.panelPhotoImg{
+    width: 100%;
+    display: block;
+}
+
+.mono{
+    font-family: 'Space Grotesk', monospace;
+    color: var(--accent-info);
+}
+
+@media(max-width: 1100px){
+    .appMain{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 700px){
+    .appHeader{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .titleRow{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .row{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .btn{
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-pattern"></div>
+
+<div class="wrap">
+<div class="app">
+
+<header class="appHeader">
+
+<div class="brand">
+<div class="logo">
+<div class="logoDot"></div>
+</div>
+
+<div class="headerText">
+<div class="titleRow">
+<h1>CEKBONUS</h1>
+<div class="subtitle">Dashboard PRO</div>
+</div>
+
+<p class="hint">
+Input dijalankan langsung dari halaman ekstensi untuk proses otomatis.
+</p>
+</div>
+</div>
+
+<div class="headerActions">
+<button class="iconBtn" id="themeToggle">LIGHT</button>
+</div>
+
+</header>
+
+<main class="appMain">
+
+<section class="panel">
+
+<div class="panelHeader">
+<h2 class="panelTitle">Input Tiket</h2>
+<p class="panelDesc">
+Masukkan data tiket untuk proses pengecekan otomatis.
+</p>
+</div>
+
+<div class="grid">
+
+<div>
+<label>User ID</label>
+
+<div class="row">
+<input class="rowGrow" id="userId" type="text" placeholder="Masukkan User ID">
+
+<button class="btn secondary small" id="checkUserBtn">
+Cek UserID
+</button>
+
+<p class="statusline" id="status">
+Siap digunakan.
+</p>
+</div>
+
+<p class="fieldHint">
+User ID akan otomatis dinormalisasi.
+</p>
+</div>
+
+<div>
+<label>Kode Tiket (Tx ID)</label>
+<input id="ticketCode" type="text" placeholder="Masukkan Tx ID">
+</div>
+
+<div>
+<label>Multi Input</label>
+<textarea id="bulk" placeholder="userId,txId"></textarea>
+
+<p class="fieldHint">
+Format:
+<span class="mono">userId,txId</span>
+</p>
+</div>
+
+</div>
+
+<div class="row">
+
+<button class="btn btn-primary" id="sendBtn">
+Kirim & Cek
+</button>
+
+<button class="btn secondary" id="copyBtn">
+Salin Hasil
+</button>
+
+<button class="btn danger" id="clearBtn">
+Bersihkan
+</button>
+
+</div>
+
+<details>
+<summary>Pengaturan Tambahan</summary>
+
+<div class="grid" style="margin-top: 16px;">
+
+<div>
+<label>URL Dasar Admin</label>
+<input id="adminUrl" type="url">
+</div>
+
+<div>
+<label>Nama Eksekutor</label>
+<input id="executorName" type="text">
+</div>
+
+<div>
+<label>Tanggal Mulai</label>
+<input id="startDate" type="date">
+</div>
+
+<div>
+<label>Tanggal Akhir</label>
+<input id="endDate" type="date">
+</div>
+
+<div style="grid-column:1/-1;">
+<label>Header Auth / Agent</label>
+
+<textarea id="agentHeaders"></textarea>
+</div>
+
+</div>
+</details>
+
+</section>
+
+<section class="panel panelResults">
+
+<div class="panelHeader">
+<h2 class="panelTitle">Hasil Pengecekan</h2>
+<p class="panelDesc">
+Tabel akan update otomatis ketika hasil diterima.
+</p>
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>User ID</th>
+<th>Tx ID</th>
+<th>Debet</th>
+<th>Scatter</th>
+<th>FreeSpin</th>
+<th>Status</th>
+<th>BONUSSMB</th>
+</tr>
+</thead>
+
+<tbody id="resultBody">
+<tr>
+<td colspan="7" style="text-align:center;">
+Belum ada data
+</td>
+</tr>
+</tbody>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+</div>
+
+<script src="index.globals.min.js"></script>
+<script src="index.parse.min.js"></script>
+<script src="index.results.min.js"></script>
+<script src="index.integration.min.js"></script>
+<script src="index.events.min.js"></script>
+
+</body>
+</html>
